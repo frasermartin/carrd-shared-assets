@@ -1,9 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".copyright-year")
-    .forEach(el => {
-      const year = new Date().getFullYear();
-      const siteTitle = el.dataset.siteTitle;
 
-      el.textContent = `© ${year} ${siteTitle}` + ` | Published with <a hef="https://try.carrd.com/j31pslcx">Carrd</a>`;
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const year = new Date().getFullYear();
+
+  document.querySelectorAll(".copyright-year").forEach(el => {
+    const siteTitle = el.dataset.siteTitle || document.title;
+
+    el.textContent = `© ${year} ${siteTitle} | Published with `;
+
+    const link = document.createElement("a");
+    link.href = "https://try.carrd.com/j31pslcx";
+    link.textContent = "Carrd";
+
+    el.appendChild(link);
+  });
 });
